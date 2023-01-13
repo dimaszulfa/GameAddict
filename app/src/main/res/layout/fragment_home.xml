@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <EditText
+        android:inputType="text"
+        android:layout_margin="16dp"
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:hint="Search..."
+        android:drawableStart="@drawable/ic_baseline_search_24"
+         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGames"

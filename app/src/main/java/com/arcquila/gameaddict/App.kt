@@ -1,6 +1,8 @@
 package com.arcquila.gameaddict
 
 import android.app.Application
+import com.arcquila.gameaddict.di.databaseModule
+import com.arcquila.gameaddict.di.favModule
 import com.arcquila.gameaddict.di.homeModule
 import com.arcquila.gameaddict.di.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -11,7 +13,7 @@ internal class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(homeModule, networkModule)
+            modules(homeModule, networkModule, databaseModule, favModule)
         }
     }
 }

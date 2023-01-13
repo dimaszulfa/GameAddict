@@ -34,7 +34,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = HomeAdapter()
+        adapter = HomeAdapter{
+            vm.setFavorite(it)
+        }
         binding.rvGames.adapter = adapter
 binding.rvGames.setHasFixedSize(true)
 binding.rvGames.layoutManager =LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

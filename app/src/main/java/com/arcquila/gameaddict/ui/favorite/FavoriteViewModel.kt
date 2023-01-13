@@ -1,4 +1,4 @@
-package com.arcquila.gameaddict.ui.home
+package com.arcquila.gameaddict.ui.favorite
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +9,9 @@ import com.arcquila.gameaddict.repository.local.model.GameEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: GamesRepository): ViewModel() {
+class FavoriteViewModel(private val repository: GamesRepository): ViewModel() {
 
-    private var _games = MutableLiveData<List<Game>>()
+    private var _games = MutableLiveData<List<GameEntity>>()
     val games get() = _games
 
     private var _isFavorite = MutableLiveData<GameEntity>()
@@ -27,15 +27,13 @@ class HomeViewModel(private val repository: GamesRepository): ViewModel() {
     }
 
 
-    fun getGameData(){
+    fun getFavoriteData(){
         viewModelScope.run {
             launch(Dispatchers.IO){
-                val getData = repository.getGames()
+                val getData = repository.getFavoriteGames()
                 _games.postValue(getData)
             }
         }
     }
-
-
 
 }

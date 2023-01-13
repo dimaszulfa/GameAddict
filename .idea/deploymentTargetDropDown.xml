@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Dimas\.android\avd\Nougat.avd" />
+            <value value="C:\Users\Dimas\.android\avd\Pixel_3a_API_33_x86_64.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-01-13T08:18:24.595042600Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-01-13T14:00:43.983277300Z" />
   </component>
 </project>
