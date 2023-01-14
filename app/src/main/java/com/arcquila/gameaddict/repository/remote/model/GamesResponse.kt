@@ -45,7 +45,7 @@ data class GamesResponse(
 	val seoKeywords: String
 ){
     fun getGames(): List<Game>{
-        return results?.map {
+        return results.map {
             it.toGame()
         }.orEmpty()
     }

@@ -1,5 +1,6 @@
 package com.arcquila.gameaddict.ui.favorite
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arcquila.gameaddict.databinding.ItemGamesBinding
 import com.arcquila.gameaddict.domain.Game
 import com.arcquila.gameaddict.repository.local.model.GameEntity
+import com.arcquila.gameaddict.ui.detail.DetailGameActivity
 import com.bumptech.glide.Glide
 
 class FavoriteAdapter(val onFavorite: (GameEntity)->Unit): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
@@ -17,11 +19,15 @@ class FavoriteAdapter(val onFavorite: (GameEntity)->Unit): RecyclerView.Adapter<
              binding.tvGameTitle.text = gameItem.name
              binding.tvRatingItem.text = gameItem.rating.toString()
              binding.tvReleaseDate.text = gameItem.released
-//             binding.itemGame.setOnClickListener{
+             binding.itemGame.setOnClickListener{
 //                 Toast.makeText(it.context, "Item ${gameItem.name} di Klik", Toast.LENGTH_SHORT).show()
-//             }
+                 val moveToDetail = Intent(itemView.context, DetailGameActivity::class.java)
+                 moveToDetail.putExtra(DetailGameActivity.ID, gameItem.id)
+                 itemView.context.startActivity(moveToDetail)
+             }
              Glide.with(itemView).load(gameItem.backgroundImage).into(binding.ivGameImage)
          }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -9,9 +9,5 @@ data class Game(
     val name: String,
     val backgroundImage: String,
     val released: String,
-    val rating: String,
-){
-    fun toGameEntity(): GameEntity{
-        return GameEntity(id,name,backgroundImage,released,rating,true)
-    }
-}
+    val rating: String
+    )

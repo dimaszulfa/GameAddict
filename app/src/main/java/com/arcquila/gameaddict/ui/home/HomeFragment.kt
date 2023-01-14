@@ -1,12 +1,12 @@
 package com.arcquila.gameaddict.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.arcquila.gameaddict.R
 import com.arcquila.gameaddict.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,11 +17,6 @@ class HomeFragment : Fragment() {
     private lateinit var _binding: FragmentHomeBinding
     private val vm: HomeViewModel by viewModel()
     private val binding get() = _binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +29,35 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = HomeAdapter{
-            vm.setFavorite(it)
-        }
+        adapter = HomeAdapter()
         binding.rvGames.adapter = adapter
-binding.rvGames.setHasFixedSize(true)
-binding.rvGames.layoutManager =LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-vm.getGameData()
+        binding.rvGames.setHasFixedSize(true)
+        binding.rvGames.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        vm.getGameData()
 
-        vm.games.observe(viewLifecycleOwner){
+        binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+
+                return false
+
+            }
+
+            override fun onQueryTextChange(msg: String): Boolean {
+                // inside on query text change method we are
+                // calling a method to filter our recycler view.
+/*                vm.searchGame(msg)
+                vm.searchGame.observe(viewLifecycleOwner) {
+                    adapter.addData(it)
+                    adapter.notifyDataSetChanged()
+                }*/
+                return false
+            }
+        })
+
+
+        vm.games.observe(viewLifecycleOwner) {
             adapter.addData(it)
             adapter.notifyDataSetChanged()
         }
